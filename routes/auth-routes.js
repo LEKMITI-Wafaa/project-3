@@ -16,7 +16,7 @@ router.post('/signup',fileUploader.single('image'), [
   check('password')
     .isLength({ min: 8 }).withMessage('password must be at least 8 chars long.')
     .matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z\d@$.!%*#?&]/).withMessage('Password must contain at least a number, an uppercase ans a lowercase')
-], async(req, res) => {
+], async (req, res) => {
 
   const { firstname, lastname, service, role, email } = req.body;
 
@@ -34,9 +34,9 @@ router.post('/signup',fileUploader.single('image'), [
   } else {
     const isUserExist = await User.findOne({email: req.body.email})
     if(isUserExist) {
-    req.session.errors = ['a user already exist with that email address.']
-    res.status(400).json({message: req.session.errors})
-    return;
+      req.session.errors = ['a user already exist with that email address.']
+      res.status(400).json({message: req.session.errors})
+      return;
     } else {
       const passwordHash = bcryptjs.hashSync(req.body.password, 10); 
       const imageURL = req.file ? req.file.path : 'https://res.cloudinary.com/dshuazgaz/image/upload/v1602411437/avatar_el8zal.webp'

@@ -3,6 +3,7 @@ require('dotenv').config();
 const bodyParser   = require('body-parser');
 const cookieParser = require('cookie-parser');
 const express      = require('express');
+require("express-async-errors");
 const favicon      = require('serve-favicon');
 const hbs          = require('hbs');
 const mongoose     = require('mongoose');

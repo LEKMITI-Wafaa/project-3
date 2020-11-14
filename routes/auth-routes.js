@@ -7,9 +7,9 @@ const fileUploader = require('../configs/cloudinary.config');
 const User = require('../models/User.model.js');
 const Service = require("../models/Services.model.js");
 
-const router = express.Router()
+const router = express.Router();
 
-router.post('/',fileUploader.single('image'), [
+router.post('/signup',fileUploader.single('image'), [
   body('firstname', 'first name must have at least 3 chars').isLength({ min: 3 }),
   body('lastname', 'last name must have at least 3 chars').isLength({ min: 3 }),
   body('email', 'email is not valid').isEmail(),
